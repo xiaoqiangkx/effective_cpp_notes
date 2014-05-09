@@ -43,6 +43,7 @@ Item 2-3: 尽量以const, enum, inline替换#define; 尽量使用const
 
 P13文中提到包含`#define ASPECT_RATIO 1.653`的代码中, 可能出现一个编译错误信息, 该错误信息包括1.653, 而不包含ASPECT\_RATIO, 此外, 如果define语句在其它的头文件中, 将带来更多的麻烦. 现代编译器不太出现1.653, 往往只是说明变量类型而已, `error: invalid conversion from ‘int’ to ‘int\*’`, 同时gcc编译器选项-g中ASPECT\_RATIO往往也不会被替换为1.653. 所以宏使用起来还是很方便的. 当然考虑到其它编译器可能效果不同, 最后还是使用const常量比较好.
 
+见`define.cpp`
 
 C的缺陷1
 ---------------
@@ -62,6 +63,7 @@ char *p = "test";
 
 缺陷改正方法: 使用const char* 来保存test信息. 如果p唯一指向此字符串, 使用const pointer即可.
 
+见`const\_pointer.cpp`
 
 类的const static变量
 --------------------
@@ -83,6 +85,8 @@ const int GamePlayer::NumTurns;         //定义式
 ```
 
 **随想**: C++的本质是什么? C++是一个编译语言, 编译器负责了变量声明以及变量定义, 定义时涉及静态内存分配, 甚至还有模板元编程. 那么哪些是在运行时才知道的呢?
+
+见`const\_member.cpp`
 
 错误代码如下: `undefined reference to `Test::a'`
 
@@ -129,6 +133,7 @@ P18提到, operator\*相乘应该返回const值, 避免被赋值, 由于内置�
 
 问: compare函数应该返回const类型吗? 应该其值不应该被赋值
 
+见`const\_return.cpp`
 
 函数const重载
 ----------------
@@ -136,6 +141,36 @@ P18提到, operator\*相乘应该返回const值, 避免被赋值, 由于内置�
 * 编译器使用bitwise constness(即不修改变量的每个bit), 而实际中使用logical constness, 使用mutable来实现修改
 
 * const重载可以保证const对象和非const对象的正确调用, 副作用是代码的重复性.
+
+见`const\_function.cpp`
+
+Item 4: 确定对象被使用前已先被初始化
+=====================================
+
+> C parts of C++, 仅函数外内置类型会初始化, OO/STL parts of C++, 自定义类型会调用构造函数, 容器会调用元素的函数或者值初始化.
+
+> 如果有多个构造函数, 可以将那些"赋值表现像初始化一样好"的成员变量改用赋值操作, 从而将这些赋值操作移到某个函数中去.
+
+> "成员初始化次序"固定, 先初始化base类, 然后是derived类, class的成员变量按声明顺序进行初始化.
+
+**重点**: 定义于不同编译单元内的non-local static对象(不包括全局作用域static变量), 无法保证初始化顺序. 常用方法是使用单例singleton模式.使用全局函数的local static对象
+
+见`local\_static.cpp`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 注意事项
 ===============
