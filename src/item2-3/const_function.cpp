@@ -11,7 +11,7 @@ class TextBlock {
     const char& operator[] (std::size_t pos) const {
         std::cout << "inside const operator[]" << std::endl;
         if (pos >= size)
-            throw std::out_of_range("position is not valid.");
+            throw new std::out_of_range("position is not valid.");
 
         return data[pos];
     }
@@ -33,16 +33,16 @@ int main() {
     std::cout << "non-const data[0]=" << tb[0] << std::endl;
     std::cout << "const data[0]=" << ctb[0] << std::endl;
     
-//    try {
-//        tb[10];
-//    } catch(std::out_of_range *e) {
-//        std::cerr << e->what() << std::endl;
-//    }
-  
-//    try {
-//        ctb[10];
-//    } catch(std::out_of_range *e) {
-//        std::cerr << e->what() << std::endl;
-//    }
+    try {
+        tb[10];
+    } catch(std::out_of_range *e) {
+        std::cerr << e->what() << std::endl;
+    }
+
+    try {
+        ctb[10];
+    } catch(std::out_of_range *e) {
+        std::cerr << e->what() << std::endl;
+    }
     return 0;
 }
