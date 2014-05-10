@@ -6,7 +6,7 @@ class Uncopyable {
         Uncopyable& operator=(const Uncopyable&);
 };
 
-class Test1: public Uncopyable {
+class Test1: private Uncopyable {
 };
 
 class Test2 {

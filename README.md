@@ -271,7 +271,7 @@ Item 12: 复制对象时勿忘其每一个成分
 相对于不同的情形, 处理手段不同
 
 1. 单一区块或函数内的资源分配, 使用智能指针`auto\_ptr`. 例如`std::auto_ptr\<Investment\> pInv(createInvenstment())`
-    * 获得资源后立即放到管理对象中 RAII(Resouce Acquisition Is Initialization)
+    * 获得资源后立即放到管理对象中 RAII(Resouce Acquisition Is Initialization), 不要被其它代码获取到这份资源, 如果需要获得这份资源只能通过拷贝
     * 管理对象利用析构函数确保资源被释放
     * 注: 防止多个`auto\_ptr`指向同一对象, 导致多次归还资源. 而多个`auto\_ptr`之间进行复制将导致右操作数置NULL, 从而使左操作数获得资源的唯一拥有权. **STL要求元素具有赋值功能, 所以auto\_ptr不可以使用**
 
@@ -286,9 +286,18 @@ std::auto_ptr<std::string> aps(new std::string[10]);
 例子见`smart\_ptr.cpp`
 
 
+Item 14: 在资源管理类中小心copying行为
+======================================
 
+> 当一个RAII对象被复制时, 会发生什么事?
 
+1. 禁止复制, 将拷贝构造函数和赋值构造函数声明为私有不实现.(也可以通过private 继承uncopyable基类)
 
+2. 底层使用shared\_ptr来保存资源, 并且给智慧指针赋予自定义删除器
+
+令: **auto\_ptr**采用转移底部资源的拥有权, **深度拷贝**使用复制底部资源
+
+见`mutex.cpp`例子
 
 
 

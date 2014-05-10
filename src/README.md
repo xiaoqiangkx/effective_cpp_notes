@@ -78,3 +78,10 @@ Item 13
 ------------ 
  * smart\_ptr.cpp
     * auto\_ptr和shared\_ptr的例子
+
+
+Item 14
+------------
+ * mutex.cpp
+    * 使用mutex管理类来自动unlock mutex. `g++ -std=c++0x mutex.cpp -lpthread`
+    * 补充Uncopyable类的定义: 为了防止外界初始化此类, 构造函数和析构函数定义为为protected,拷贝构造函数和赋值构造函数定义为private且不实现防止用户和友元访问(用户编译就不通过, 由于无法调用私有拷贝函数, 友元在链接时才有错误.). 继承时使用private继承可以防止子类继续被继承. 
