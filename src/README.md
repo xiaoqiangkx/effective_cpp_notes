@@ -72,3 +72,9 @@ Item 12
 --------------
  * assign\_fail.cpp
     * 赋值拷贝函数, 不会调用默认赋值构造函数的哦. 不像拷贝构造函数.
+
+
+Item 13
+------------ 
+ * smart\_ptr.cpp
+    * auto\_ptr和shared\_ptr的例子
