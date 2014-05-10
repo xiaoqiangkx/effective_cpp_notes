@@ -39,3 +39,11 @@ Item 6
     * 通过base类的private方法, 将错误提前到编译期, 由于无法生成拷贝函数而出错.
 
  注: 通过`g++ -o main.o -c uncopyable.cpp` 和 `g++ -o main main.o` 来测试.
+
+
+Item 7
+-------------
+ * partial\_delete.cpp
+    * 局部销毁,其实派生类的非指针类数据依旧会被销毁掉. 
+ * pure\_destructor.cpp
+    * 包含纯虚函数的类不能被创建, 同时又能够被子类调用析构函数, 一举两得啊.
