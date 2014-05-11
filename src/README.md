@@ -121,3 +121,15 @@ Item 24
 --------------
  * multiple.cpp
     * member函数的对立面是non-member. friend函数能够不用就不用吧.
+
+
+Item 27
+--------------
+ * static\_cast.cpp
+    * static\_cast无法将Derived类进行向上转型.
+
+
+Item 28
+---------------
+ * handle\_dangling.cpp
+    * 返回寿命比对象长的handle就是一种错误. 
