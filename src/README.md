@@ -97,3 +97,27 @@ Item 16
 -------------
  * delete\_array.cpp
     * delete动态数组产生了segment fault
+
+
+Item 17
+-------------
+ * newed\_exception.cpp
+    * 提倡使用独立语句来生成newed对象并放入智能指针中.
+
+
+Item 21
+--------------
+ * static\_return.cpp
+    * 使用local static变量时不支持多次修改此变量作为返回比较的情况.
+
+
+Item 23
+--------------
+ * class.cpp
+    * 教你如何将不同template分割开来.
+
+
+Item 24
+--------------
+ * multiple.cpp
+    * member函数的对立面是non-member. friend函数能够不用就不用吧.
