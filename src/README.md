@@ -91,3 +91,9 @@ Item 15
 ------------
  * smart\_get.cpp
     * 测试c++11中的get, `-\>`, `\*`方法. 命令`g++ -std=c++0x smart\_get.cpp`
+
+
+Item 16
+-------------
+ * delete\_array.cpp
+    * delete动态数组产生了segment fault
