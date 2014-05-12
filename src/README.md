@@ -133,3 +133,27 @@ Item 28
 ---------------
  * handle\_dangling.cpp
     * 返回寿命比对象长的handle就是一种错误. 
+
+
+Item 31
+----------------
+ * Person.h, PersonImpl.h(Person.cpp依存PersonImpl.h)
+    * Person接口类中使用pimpl(pointer to implementation)和类声明机制. 放弃inline来实现编译弱依存. 众多文件依赖Person.h, 所以尽量减少重编译.
+
+```
+g++ -std=c++0x -o PersonImpl.o -c PersonImpl.cpp
+g++ -o main Person.Person.cpp Person.h Person.o
+g++ -o main Person.o  PersonImpl.o main.cpp -std=c++0x
+```
+或者
+`g++ -std=c++0x main.cpp Person.cpp PersonImpl.cpp`
+
+ * abstract\_Person.h
+    * 通过虚拟基类和虚函数来引用派生类. 从而将类实现隐藏起来.
+
+
+Item 33
+--------------
+ 
+ * hide\_fun.cpp
+    * 使用using实现子类和父类的函数重载. 使用private继承和转交函数实现单一函数继承.
