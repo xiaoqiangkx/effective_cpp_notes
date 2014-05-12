@@ -157,3 +157,15 @@ Item 33
  
  * hide\_fun.cpp
     * 使用using实现子类和父类的函数重载. 使用private继承和转交函数实现单一函数继承.
+
+
+Item 34
+--------------
+ * pure\_implementation.cpp
+    * 通过实现纯虚函数或者protected函数类避免直接virtual
+
+
+Item 37
+-------------------
+ * virtual\_default\_para.cpp
+    * 不要改变virtual函数的默认参数
